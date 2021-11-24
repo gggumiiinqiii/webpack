@@ -1,0 +1,13 @@
+$bg-color: #ee3;
+@import "hello.scss";
+.box {
+  background-color: $bg-color;
+  display: flex;
+  width: 100px;
+  transition: width 2s;
+  font-size: var(--seventeenpx);
+}
+.box:hover {
+  width: 200px;
+  color: $green;
+}
