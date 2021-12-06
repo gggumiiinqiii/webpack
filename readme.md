@@ -1,3 +1,11 @@
+<!--
+ * @Author: guminqi
+ * @Date: 2021-11-19 14:35:01
+ * @LastEditTime: 2021-12-06 20:38:09
+ * @LastEditors: guminqi
+ * @Description:
+-->
+
 npm -i -D -S
 // https://mp.weixin.qq.com/s/qIbUEFS1SUdlm8-Z8ecmmg 地址
 
@@ -16,9 +24,13 @@ postcss-loader@4: 是一个 css 预处理器,为 css3 的属性添加前缀,提�
 autoprefixer@9:
 sass-resources-loader@2 :sass 的全局变量注入
 mini-css-extract-plugin@0.9.0 把 css 从 js 中抽离出来 4 用这个 1-3 用 extract-text-webpack-plugin
+// 压缩 css
+optimize-css-assets-webpack-plugin@5.0.4
+// 压缩 js
+uglifyjs-webpack-plugin@1
 webpack 模块的加载思路
 加载 main.js=>执行 webpackBootstrap=>*webpack_require*入口模块=>执行模块=>有其他模块=>是=>*webpack_require*其他模块=>执行
-
+html-webpack-plugin@4 //动态注入 css/js 和生存 html 文件
 module.rules 的参数:
 use:为模块使用指定 loader,传入一个字符串数组,加载顺序从右往左
 module.rules 的匹配规则:
