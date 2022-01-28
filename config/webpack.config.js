@@ -3,8 +3,15 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 module.exports = {
   entry: path.resolve(__dirname, "../src/index.js"),
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "../src/"),
+    },
+  },
   mode: "development",
   devtool: "source-map",
   output: {
@@ -57,6 +64,18 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+            },
+          },
+        ],
+        exclude: /(node_modules)/,
+      },
     ],
     // 不去解析jquery和lodash的代表库的依赖
     noParse: function (content) {
@@ -70,12 +89,12 @@ module.exports = {
       chunkFilename: "[id].[hash].css",
     }),
     //压缩css和js的插件
-    new OptimizeCssAssetsPlugin({}),
-    new UglifyJsPlugin({
-      cache: true, //当 JS 没有发生变化则不压缩；
-      parallel: true, //是否启用并行压缩；
-      sourceMap: true, //是否启用 sourceMap；
-    }),
+    // new OptimizeCssAssetsPlugin({}),
+    // new UglifyJsPlugin({
+    //   cache: true, //当 JS 没有发生变化则不压缩；
+    //   parallel: true, //是否启用并行压缩；
+    //   sourceMap: true, //是否启用 sourceMap；
+    // }),
     new HtmlWebpackPlugin({
       title: "leo study!",
       // 生成的文件标题
@@ -91,5 +110,7 @@ module.exports = {
         // 移除双引号
       },
     }),
+    // 查看打包文件的大小数据可视化
+    //new BundleAnalyzerPlugin(),
   ],
 };

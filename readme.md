@@ -1,7 +1,7 @@
 <!--
  * @Author: guminqi
  * @Date: 2021-11-19 14:35:01
- * @LastEditTime: 2021-12-06 22:27:22
+ * @LastEditTime: 2022-01-28 15:30:29
  * @LastEditors: guminqi
  * @Description:
 -->
@@ -28,7 +28,16 @@ mini-css-extract-plugin@0.9.0 把 css 从 js 中抽离出来 4 用这个 1-3 用
 optimize-css-assets-webpack-plugin@5.0.4
 // 压缩 js
 uglifyjs-webpack-plugin@1
-// file-loader@6
+// 处理类型图片音频文件导入
+file-loader@6
+// 处理类型图片音频文件导入,图片文件可以设置最大 size,在最大 size 以下大小的图片会被转成 base64 格式
+url-loader@4
+//es6 及以上的 js 转换成 es5
+babel-loader@8 @babel/core@7 @babel/preset-env@7
+//查看打包文件的数据可视化
+webpack-bundle-analyzer@4
+//这是一个分成 common.dev.prod 的方法
+webpack-merge@5
 webpack 模块的加载思路
 加载 main.js=>执行 webpackBootstrap=>*webpack_require*入口模块=>执行模块=>有其他模块=>是=>*webpack_require*其他模块=>执行
 html-webpack-plugin@4 //动态注入 css/js 和生存 html 文件
