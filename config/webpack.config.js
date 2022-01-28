@@ -8,7 +8,7 @@ module.exports = {
   mode: "development",
   devtool: "source-map",
   output: {
-    filename: "main.js",
+    filename: "main.[hash].js",
     path: path.resolve(__dirname, "../dist"),
   },
   module: {
@@ -39,6 +39,24 @@ module.exports = {
           },
         ],
       },
+      // {
+      //   test: /\.(png|svg|jpg|jpeg|gif)$/,
+      //   include: [path.resolve(__dirname, "../src/")],
+      //   use: ["file-loader"],
+      // },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
+        include: [path.resolve(__dirname, "../src/")],
+        use: [
+          {
+            loader: "url-loader",
+            //小于8kb的图片会转成base64编码
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
     ],
     // 不去解析jquery和lodash的代表库的依赖
     noParse: function (content) {
@@ -46,10 +64,12 @@ module.exports = {
     },
   },
   plugins: [
+    //style.loader是把css直接注入到html中,minicssextractplugin是把css打包成一个文件
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css", //最终输出的文件名
-      chunkFilename: "[id].css",
+      chunkFilename: "[id].[hash].css",
     }),
+    //压缩css和js的插件
     new OptimizeCssAssetsPlugin({}),
     new UglifyJsPlugin({
       cache: true, //当 JS 没有发生变化则不压缩；

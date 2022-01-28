@@ -6,6 +6,7 @@ $bg-color: #ee3;
   width: 100px;
   transition: width 2s;
   font-size: var(--seventeenpx);
+  background-image: url("./2.png");
 }
 .box:hover {
   width: 200px;
