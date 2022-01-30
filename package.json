@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "build": "rimraf ./dist/ && webpack --config config/webpack.config.js"
+    "build": "rimraf ./dist/ && webpack --config config/webpack.config.js",
+    "dev": "rimraf ./dist/ && webpack --config config/webpack.dev.js --mode development",
+    "prod": "rimraf ./dist/ && webpack --config config/webpack.prod.js --mode production"
   },
   "author": "guminqi",
   "license": "MIT",
